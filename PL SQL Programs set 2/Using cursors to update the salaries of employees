@@ -1,0 +1,29 @@
+# Write PL SQL program using cursors to update the salaries of employees as follows. And also count and display the no. of records have been updated.
+If sal<1000 then update salary to 1500
+If sal>=1000 and <2000 then update salary to 2500
+If sal>=2000 and <3000 then update salary to 4000
+
+CREATE TABLE emp_temp AS   SELECT employee_id,         first_name,         last_name,
+        department_id,         salary  FROM   employees;
+DECLARE
+    CURSOR employee_cur  IS
+      SELECT employee_id,              salary      FROM   emp_temp      WHERE  department_id = 50
+      FOR UPDATE;
+    new_sal NUMBER;
+BEGIN
+    FOR employee_rec IN employee_cur LOOP
+     IF employee_rec.salary < 1000 THEN
+  		  new_sal: = 1500;
+     IF employee_rec.salary >= 1000 and employee_rec.salary < 2000 THEN
+  		  new_sal: = 2500;
+     IF employee_rec.salary >= 2000 and employee_rec.salary <= 4000 THEN
+  		  new_sal: = 4000;
+  END IF;
+  END IF;
+  END IF;
+   UPDATE emp_temp
+        SET    salary = new_sal
+        WHERE  CURRENT OF employee_cur;
+    END LOOP;
+END;
+/ 

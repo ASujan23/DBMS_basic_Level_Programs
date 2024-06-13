@@ -1,0 +1,30 @@
+create table employees_x (emp_id number, emp_name varchar2(50), hire_date date, department_id number) ;
+
+insert into employees_x values(1,'ALex',TO_DATE('21-06-07','DD-MM-YY'),10);
+insert into employees_x values(2,'Duplex',TO_DATE('21-06-08','DD-MM-YY'),20);
+insert into employees_x values(3,'Charles',TO_DATE('21-06-09','DD-MM-YY'),30);
+insert into employees_x values(4,'Demon',TO_DATE('21-06-06','DD-MM-YY'),40);							
+CREATE OR REPLACE PROCEDURE display_records (
+  joindate IN DATE
+) AS
+  lv_id  VARCHAR2(50);
+  lv_name   NUMBER;
+  lv_deptid NUMBER;
+BEGIN
+  SELECT
+    first_name,
+    salary,
+    department_id
+  INTO
+    lv_id,
+    lv_name,
+    lv_deptid
+  FROM
+    hr.employees
+  WHERE
+    hire_date > joindate;
+Exception
+when no_data_found then
+dbms_output.put_line('No record found after'||joindate);
+
+END;

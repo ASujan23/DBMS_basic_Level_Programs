@@ -1,0 +1,15 @@
+DECLARE
+           Num_a NUMBER := &a;
+           Num_b NUMBER := &b;
+            Num_c NUMBER
+    BEGIN
+            Num_c := Num_a / Num_b;
+            dbms_output.put_line(' Value of Num_c' || Num_c);
+    EXCEPTION
+           WHEN ZERO_DIVIDE
+   THEN
+                 dbms_output.put_line('Trying to divide by zero');
+                 dbms_output.put_line(' Value of Num_a ' || Num_a);
+                 dbms_output.put_line(' Value of Num_b ' || Num_b);
+   END;
+/

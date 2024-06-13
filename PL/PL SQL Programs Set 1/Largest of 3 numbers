@@ -1,0 +1,17 @@
+declare
+a number(10);
+b number(10);
+c number(10);
+begin
+a:=&a;
+b:=&b;
+c:=&c;
+if a>b and a>c then        -- checking if a is the largest.
+dbms_output.put_line(chr(10)||a||' is largest');
+else if b>c then   -- checking if b is the largest.
+dbms_output.put_line(chr(10)||b||' is largest');
+else    -- c is largest.
+dbms_output.put_line(chr(10)||c||' is largest');
+end if;
+end if;
+end;
